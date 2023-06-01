@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="Ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Исаак Левитан</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-around;
+      align-items: center;
+      padding: 50px;
+    }
+    .image {
+      flex-basis: 40%;
+      margin-right: 50px;
+    }
+    .image img {
+      width: 100%;
+    }
+    .description {
+      flex-basis: 50%;
+      text-align: justify;
+    }
+    .useful-links {
+      margin-top: 50px;
+    }
+    .useful-links a {
+      display: block;
+      margin-bottom: 10px;
+    }
+    form {
+      margin-top: 50px;
+    }
+    label {
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    #weather {
+      line-height: 1.5;
+      margin-bottom: auto;
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <h1>Исаак Левитан</h1>
+</header>
+
+
+<main>
+  <div class="image">
+    <img src="Levitan_Zolotaya_Osen.jpg" alt="Золотая осень">
+  </div>
+
+  <div class="description">
+    <h2>Биография</h2>
+    <p>Исаак Левитан - русский живописец и рисовальщик еврейского происхождения, один из крупнейших и наиболее плодовитых мастеров реалистического пейзажа второй половины XIX века. Академик Императорской Академии художеств</p>
+    <h2>Золотая осень</h2>
+    <p> Картина была впервые представлена на 24-й выставке передвижников, и предваряла её скрупулёзная работа. Сначала были созданы этюды с натуры – автор осенью 1895 года жил в усадьбе Горка Тверской губернии, там и искал сюжеты, а закончена уже в Москве.
+
+      Сразу привлекает внимание настроение работы. Живописец от элегических, очень тонких и душевных работ вдруг перешёл к пышному, яркому, торжественному пейзажу. Как водится, все значимые события в жизни творца непременно находят свой отклик в его произведениях, и Левитан не явился исключением – его личная жизнь бурлила и была полна страстей во время написания «Золотой осени».
+
+      Будучи в близких отношениях с Софией Кувшинниковой, Левитан влюбился в Анну Турчанинову. Она отдыхала в соседней усадьбе. Развился бурный роман, напоминающий прям-таки книжные страсти. Кувшинникова пыталась покончить с собой (слава Богу, эксцентричной особе это не удалось), пылкие увлечения друга открыто осуждали Антон Чехов, и его сестра Мария (в которую живописец в своё время также был влюблён безответно), а сам Левитан жил в ожидании счастья. Чехов также отрицательно высказывался и о работах художника, созданных в этот волнительный период, ругая за излишнюю «бравурность» и декоративность. Эти же комментарии относились и к «Золотой осени» - куда девался тонкий лирик, чуткий художник, рисующий душевные тихие пейзажи?
+
+      Сегодня искусствоведы относят представленную картину Левитана к так называемой мажорной серии, куда помимо «Золотой осени» входят работы «Весна. Большая вода», «Март» и др. А обычным зрителям она нравится за эмоциональность, выразительность и яркие торжественные цвета.</p>
+  </div>
+  <div class="useful-links">
+    <h2>Полезно почитать</h2>
+    <a href="https://en.wikipedia.org/wiki/Isaac_Levitan">Isaac Levitan on Wikipedia</a>
+    <a href="https://www.hermitagemuseum.org/wps/portal/hermitage/search/?lng=en#search=%22levitan%22">Levitan's works at the Hermitage Museum</a>
+    <a href="https://www.tretyakovgallery.ru/en/search/?q=levitan">Levitan's works at the Tretyakov Gallery</a>
+
+  </div>
+  <div class="useful-links">
+    <h2>Текущая погода</h2>
+    <a id="weather"></a>
+  </div>
+  <form>
+    <h2>Feedback</h2>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+    <label for="rating">Rating:</label>
+    <select id="rating" name="rating">
+      <option value="5">5 stars</option>
+      <option value="4">4 stars</option>
+      <option value="3">3 stars</option>
+      <option value="2">2 stars</option>
+      <option value="1">1 star</option>
+    </select>
+    <label>Что вам больше всего понравилось в данном произведлении?</label>
+    <input type="checkbox" id="atmosphere" name="atmosphere">
+    <label for="atmosphere">Атмосфера</label>
+    <input type="checkbox" id="light" name="light">
+    <label for="light">Работа с цветами</label>
+    <input type="checkbox" id="rural-scenes" name="rural-scenes">
+    <label for="rural-scenes">История создания и посыл</label>
+    <label>Что вам не близко в данном произведении?</label>
+    <input type="radio" id="nothing" name="improvement" value="nothing">
+    <label for="nothing">Нравится все</label>
+    <input type="radio" id="technique" name="improvement" value="technique">
+    <label for="technique">Техника</label>
+    <input type="radio" id="subject-matter" name="improvement" value="subject-matter">
+    <label for="subject-matter">Посыл</label>
+    <input type="submit" value="Submit">
+  </form>
+
+</main>
+
+<footer>
+  <p>&copy; 2023 Шеин Виталий.</p>
+</footer>
+</body>
+<script src="WeatherApi.js"></script>
+</html>
