@@ -121,45 +121,15 @@
     <h2>Текущая погода</h2>
     <a id="weather"></a>
   </div>
-  <form>
-    <h2>Feedback</h2>
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name" required>
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required>
-    <label for="rating">Rating:</label>
-    <select id="rating" name="rating">
-      <option value="5">5 stars</option>
-      <option value="4">4 stars</option>
-      <option value="3">3 stars</option>
-      <option value="2">2 stars</option>
-      <option value="1">1 star</option>
-    </select>
-    <br>
-    <label style="display: inline-block; font-weight: bold;">Что вам больше всего понравилось в данном произведлении?</label>
-    <br>
-    <input type="checkbox" id="atmosphere" name="atmosphere">
-    <label style="display: inline-block" for="atmosphere">Атмосфера</label>
-    <br>
-    <input type="checkbox" id="light" name="light">
-    <label style="display: inline-block" for="light">Работа с цветами</label>
-    <br>
-    <input type="checkbox" id="rural-scenes" name="rural-scenes">
-    <label style="display: inline-block" for="rural-scenes">История создания и посыл</label>
-    <br>
-    <label style="display: inline-block; font-weight: bold;">Что вам не близко в данном произведении?</label>
-    <br>
-    <input type="radio" id="nothing" name="improvement" value="nothing">
-    <label style="display: inline-block" for="nothing">Нравится все</label>
-    <br>
-    <input type="radio" id="technique" name="improvement" value="technique">
-    <label style="display: inline-block" for="technique">Техника</label>
-    <br>
-    <input type="radio" id="subject-matter" name="improvement" value="subject-matter">
-    <label style="display: inline-block" for="subject-matter">Посыл</label>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
+  <div class="useful-links">
+    <h2>Выразите ваше мнение</h2>
+    <p>Оцените впечатление от приведенной картины по пятибальной шкале. Также, можете оставить комментарий</p>
+
+    <div id="root"></div>
+
+  </div>
+
+
 
 </main>
 
@@ -168,4 +138,81 @@
 </footer>
 </body>
 <script src="WeatherApi.js"></script>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  class Form extends React.Component {
+    constructor(props) {
+      super(props);
+
+      this.state = {
+        email:'',
+        name: '',
+        rating: '',
+        comment: ''
+      };
+
+      this.handleEmailChange = this.handleEmailChange.bind(this);
+      this.handleNameChange = this.handleNameChange.bind(this);
+      this.handleRatingChange = this.handleRatingChange.bind(this);
+      this.handleCommentChange = this.handleCommentChange.bind(this);
+      this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleEmailChange(event) {
+      this.setState({ email: event.target.value });
+    }
+    handleNameChange(event) {
+      this.setState({ name: event.target.value });
+    }
+
+    handleRatingChange(event) {
+      this.setState({ rating: event.target.value });
+    }
+
+    handleCommentChange(event) {
+      this.setState({ comment: event.target.value });
+    }
+
+    handleSubmit(event) {
+      event.preventDefault();
+      alert(`Введенное имя: ${this.state.name}\nEmail: ${this.state.email}\nОценка: ${this.state.rating}\nКомментарий: ${this.state.comment}`);
+
+      this.setState({
+        email:'',
+        name: '',
+        rating: '',
+        comment: ''
+      });
+    }
+
+    render() {
+      return (
+              <form>
+                <label htmlFor="name">Имя:</label>
+                <input type="text" id="name" name="name" value={this.state.name} onChange={this.handleNameChange} required />
+
+                <label htmlFor="email">Email:</label>
+                <input type="text" id="email" email="email" value={this.state.email} onChange={this.handleEmailChange} required />
+
+
+                <label htmlFor="select">Оцените данную статью от 1 до 5:</label>
+                <select id="select" name="select" value={this.state.rating} onChange={this.handleRatingChange}>
+                  {[1, 2, 3, 4, 5].map((value, index) => (
+                          <option key={index} value={value}>{value}</option>
+                  ))}
+                </select>
+
+                <label htmlFor="comment">Комментарий:</label>
+                <input type="text" id="comment" name="comment" value={this.state.comment} onChange={this.handleCommentChange}></input>
+
+                <input type="submit" value="Отправить" onClick={this.handleSubmit}></input>
+              </form>
+      );
+    }
+  }
+
+  ReactDOM.render(<Form />, document.getElementById('root'));
+</script>
 </html>.
