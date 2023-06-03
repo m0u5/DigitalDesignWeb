@@ -147,6 +147,7 @@
       super(props);
 
       this.state = {
+        like:'',
         email:'',
         name: '',
         rating: '',
@@ -158,6 +159,7 @@
       this.handleRatingChange = this.handleRatingChange.bind(this);
       this.handleCommentChange = this.handleCommentChange.bind(this);
       this.handleSubmit = this.handleSubmit.bind(this);
+      this.handleLikeChange = this.handleLikeChange.bind(this);
     }
 
     handleEmailChange(event) {
@@ -174,12 +176,16 @@
     handleCommentChange(event) {
       this.setState({ comment: event.target.value });
     }
+    handleLikeChange(event) {
+      this.setState({ like: event.target.value });
+    }
 
     handleSubmit(event) {
       event.preventDefault();
-      alert(`Введенное имя: ${this.state.name}\nEmail: ${this.state.email}\nОценка: ${this.state.rating}\nКомментарий: ${this.state.comment}`);
+      alert(`Введенное имя: ${this.state.name}\nEmail: ${this.state.email}\nОценка: ${this.state.rating}\nКомментарий: ${this.state.comment}\n Понравилось: ${this.state.like}`);
 
       this.setState({
+        like:'',
         email:'',
         name: '',
         rating: '',
@@ -187,7 +193,14 @@
       });
     }
 
+
     render() {
+      const ratingOptions = [1, 2, 3, 4, 5];
+      const likeOptions = [
+        { id: 'plot', value: 'Сюжет', label: 'Сюжет' },
+        { id: 'style', value: 'Стиль', label: 'Стиль' },
+        { id: 'colors', value: 'Работа с цветами', label: 'Работа с цветами' }
+      ];
       return (
               <form>
                 <label htmlFor="name">Имя:</label>
@@ -196,16 +209,23 @@
                 <label htmlFor="email">Email:</label>
                 <input type="text" id="email" email="email" value={this.state.email} onChange={this.handleEmailChange} required />
 
-
                 <label htmlFor="select">Оцените данную статью от 1 до 5:</label>
                 <select id="select" name="select" value={this.state.rating} onChange={this.handleRatingChange}>
-                  {[1, 2, 3, 4, 5].map((value, index) => (
+                  {ratingOptions.map((value, index) => (
                           <option key={index} value={value}>{value}</option>
                   ))}
                 </select>
 
                 <label htmlFor="comment">Комментарий:</label>
                 <input type="text" id="comment" name="comment" value={this.state.comment} onChange={this.handleCommentChange}></input>
+
+                <h2>Что вам больше всего понравилось в данном произведении?</h2>
+                {likeOptions.map((option) => (
+                        <div key={option.id} style={{ display: 'flex', alignItems: 'center' }}>
+                          <input type="radio" id={option.id} name="like" value={option.value} onChange={this.handleLikeChange} />
+                          <label htmlFor={option.id} style={{ marginLeft: '10px', marginRight: '10px' }}>{option.label}</label>
+                        </div>
+                ))}
 
                 <input type="submit" value="Отправить" onClick={this.handleSubmit}></input>
               </form>
